@@ -696,7 +696,7 @@ const totalRepairCount = vehicles.reduce(
   </tr>
 </thead>
               <tbody>
-                {repairDamages.map((d) => (
+               {damages.filter((d) => d.stato !== "Risolto").map((d) => (
                   <tr key={d.id}>
                     <td>{d.data || "-"}</td>
                     <td>{d.zona}</td>

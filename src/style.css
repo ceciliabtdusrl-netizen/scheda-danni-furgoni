@@ -50,7 +50,7 @@ button{cursor:pointer;border:0}
 .porta-ant-sx { top: 17%; left: 8%; width: 9%; height: 18%; }
 .porta-ant-dx { top: 17%; left: 84%; width: 9%; height: 18%; }
 
-.porta-carico-laterale-dx { top: 20%; left: 70%; width: 12%; height: 19%; }
+.porta-carico-laterale-dx { top: 10%; left: 70%; width: 12%; height: 19%; }
 .porta-carico-post { top: 46%; left: 41%; width: 18%; height: 17%; }
 
 .fiancata-sx { top: 14%; left: 16%; width: 19%; height: 23%; }
