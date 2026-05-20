@@ -24,7 +24,16 @@ button{cursor:pointer;border:0}
 .archive-box{grid-template-columns:1fr 2fr}
 .vehicle-summary label,.archive-box label,.damage-panel label{font-size:12px;font-weight:800;color:#344054}
 .vehicle-summary strong{display:block;font-size:24px;margin-top:8px}
-.content{display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:start}
+.content{
+  display:grid;
+  grid-template-columns:1fr 360px;
+  gap:20px;
+  align-items:start;
+}
+
+.repair-alert{
+  grid-column:1 / -1;
+}
 .van-area,.damage-panel,.damage-table{background:white;border-radius:18px;padding:20px;box-shadow:0 8px 24px rgba(15,23,42,.06)}
 .van-area h3{margin:0 0 14px;text-transform:uppercase;font-size:14px}
 .mockup-wrapper{position:relative;width:100%;max-width:1100px;margin:auto}
