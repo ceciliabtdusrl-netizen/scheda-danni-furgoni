@@ -697,13 +697,17 @@ const totalRepairCount = vehicles.reduce(
 </thead>
               <tbody>
                {damages.filter((d) => d.stato !== "Risolto").map((d) => (
-                  <tr key={d.id}>
+                  <tr key={d.id} className={d.stato === "Da riparare" ? "row-repair" : ""}>
                     <td>{d.data || "-"}</td>
                     <td>{d.zona}</td>
                     <td>{d.tipo}</td>
                     <td>{d.descrizione}</td>
                     <td><span className={`badge ${String(d.priorita || "").toLowerCase()}`}>{d.priorita}</span></td>
-                    <td>{d.stato}</td>
+                    <td>
+  <span className={d.stato === "Da riparare" ? "status-repair" : "status-normal"}>
+    {d.stato}
+  </span>
+</td>
 		<td>{d.responsabile || "-"}</td>
 		<td>{d.km || "-"}</td>
 		<td>{d.assegnatoA || "-"}</td>

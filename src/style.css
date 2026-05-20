@@ -283,3 +283,25 @@ th{text-transform:uppercase;font-size:11px;color:#64748b}
   width: 100%;
   margin-bottom: 20px;
 }
+.row-repair {
+  background: #fff1f0;
+  border-left: 6px solid #ff4d4f;
+}
+
+.status-repair {
+  background: #ff4d4f;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.status-normal {
+  background: #eef2f7;
+  color: #334155;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  white-space: nowrap;
+}
