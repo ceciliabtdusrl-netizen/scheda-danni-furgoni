@@ -392,9 +392,18 @@ async function markAsRepaired(id) {
     await openVehicle(selectedPlate);
   }
 function editDamage(d) {
-  setDamage(d);
-}
-  async function imageToBase64(url) {
+  setDamage({
+    ...d,
+    id: d.id,
+    data: d.data || new Date().toISOString().slice(0, 10),
+    foto: d.foto || []
+  });
+
+  window.scrollTo({
+    top: 500,
+    behavior: "smooth"
+  });
+}  async function imageToBase64(url) {
   const response = await fetch(url);
   const blob = await response.blob();
 
