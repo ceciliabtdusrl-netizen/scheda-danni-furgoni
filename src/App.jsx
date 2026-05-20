@@ -752,7 +752,7 @@ const totalRepairCount = vehicles.reduce(
     <th>Assegnato a</th>
     <th>Prevista rip.</th>
     <th>Foto</th>
-    <th>X</th>
+<th>Azioni</th>
   </tr>
 </thead>
               <tbody>
@@ -777,37 +777,29 @@ const totalRepairCount = vehicles.reduce(
     : "-"}
 </td>
 		<td>{d.dataPrevistaRiparazione || "-"}</td>
-                    <td>
-                      <div className="mini-photos">
-                        {(d.foto || []).map((p, i) => (
-                          <a key={i} href={p.url} target="_blank" rel="noreferrer">
-                            <img src={p.url} alt="foto danno" />
-                          </a>
-                        ))}
-                      </div>
-                    </td>
-             <td>
-  <button
-    className="repair-btn"
-    onClick={() => markAsRepaired(d.id)}
-  >
+                   <td>
+  <div className="mini-photos">
+    {(d.foto || []).map((p, i) => (
+      <a key={i} href={p.url} target="_blank" rel="noreferrer">
+        <img src={p.url} alt="foto danno" />
+      </a>
+    ))}
+  </div>
+</td>
+
+<td>
+  <button className="repair-btn" onClick={() => markAsRepaired(d.id)}>
     Riparato
   </button>
 
-  <button
-    className="edit-btn"
-    onClick={() => editDamage(d)}
-  >
+  <button className="edit-btn" onClick={() => editDamage(d)}>
     Modifica
   </button>
 
-  <button
-    className="delete-btn"
-    onClick={() => removeDamage(d.id)}
-  >
+  <button className="delete-btn" onClick={() => removeDamage(d.id)}>
     Elimina
   </button>
-</td>     
+</td>
                   </tr>
                 ))}
               </tbody>
