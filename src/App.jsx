@@ -837,11 +837,7 @@ const totalRepairCount = vehicles.reduce(
             <td>{d.responsabile || "-"}</td>
             <td>{d.km || "-"}</td>
             <td>{d.assegnatoA || "-"}</td>
-<td>
-  {d.repairedAt?.toDate
-    ? d.repairedAt.toDate().toLocaleDateString()
-    : "-"}
-</td>
+
             <td>
               <div className="mini-photos">
                 {(d.foto || []).map((p, i) => (
