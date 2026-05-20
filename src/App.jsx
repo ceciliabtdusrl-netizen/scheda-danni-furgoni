@@ -347,17 +347,25 @@ function App() {
 
     setBusy(true);
     try {
-      await addDoc(collection(db, "mezzi", selectedPlate, "danni"), {
-        ...damage,
-        targa: selectedPlate,
-        vehicleRef: `mezzi/${selectedPlate}`,
-        createdByEmail: user?.email || "",
-        createdByName: user?.displayName || "",
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp()
-      });
+      if (damage.id) {
+  await updateDoc(doc(db, "mezzi", selectedPlate, "danni", damage.id), {
+    ...damage,
+    updatedAt: serverTimestamp()
+  });
+} else {
+  await addDoc(collection(db, "mezzi", selectedPlate, "danni"), {
+    ...damage,
+    targa: selectedPlate,
+    vehicleRef: `mezzi/${selectedPlate}`,
+    createdByEmail: user?.email || "",
+    createdByName: user?.displayName || "",
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp()
+  });
+}
 
       await openVehicle(selectedPlate);
+setDamage(initialDamage());
       alert("Danno salvato e collegato al furgone.");
     } catch (e) {
       alert("Errore salvataggio danno: " + e.message);
@@ -383,7 +391,9 @@ async function markAsRepaired(id) {
     await deleteDoc(doc(db, "mezzi", selectedPlate, "danni", id));
     await openVehicle(selectedPlate);
   }
-
+function editDamage(d) {
+  setDamage(d);
+}
   async function imageToBase64(url) {
   const response = await fetch(url);
   const blob = await response.blob();
@@ -767,7 +777,7 @@ const totalRepairCount = vehicles.reduce(
                         ))}
                       </div>
                     </td>
-                  <td>
+             <td>
   <button
     className="repair-btn"
     onClick={() => markAsRepaired(d.id)}
@@ -776,12 +786,19 @@ const totalRepairCount = vehicles.reduce(
   </button>
 
   <button
-    className="danger"
+    className="edit-btn"
+    onClick={() => editDamage(d)}
+  >
+    Modifica
+  </button>
+
+  <button
+    className="delete-btn"
     onClick={() => removeDamage(d.id)}
   >
     Elimina
   </button>
-</td>
+</td>     
                   </tr>
                 ))}
               </tbody>

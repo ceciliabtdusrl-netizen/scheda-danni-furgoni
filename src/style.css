@@ -305,3 +305,32 @@ th{text-transform:uppercase;font-size:11px;color:#64748b}
   font-weight: 700;
   white-space: nowrap;
 }
+.repair-btn{
+  background:#22c55e !important;
+  color:white !important;
+  border:none !important;
+  padding:10px 16px !important;
+  border-radius:10px !important;
+  font-weight:800 !important;
+  cursor:pointer !important;
+  font-size:14px !important;
+}
+
+.repair-btn:hover{
+  background:#16a34a !important;
+}
+.damage-table .repair-btn {
+  background: #22c55e !important;
+  color: white !important;
+  border: none !important;
+  padding: 10px 16px !important;
+  border-radius: 10px !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  font-size: 14px !important;
+  margin-right: 8px !important;
+}
+
+.damage-table .repair-btn:hover {
+  background: #16a34a !important;
+}
