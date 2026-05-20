@@ -380,35 +380,72 @@ async function markAsRepaired(id) {
     await openVehicle(selectedPlate);
   }
 
-  function exportPDF() {
-    if (!selectedPlate) return alert("Seleziona un mezzo.");
+  async function imageToBase64(url) {
+  const response = await fetch(url);
+  const blob = await response.blob();
 
-    const pdf = new jsPDF();
-    let y = 20;
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.readAsDataURL(blob);
+  });
+}
 
-    pdf.setFontSize(18);
-    pdf.text(`Scheda danni ${selectedPlate}`, 20, y);
-    y += 12;
+async function exportPDF() {
+  if (!selectedPlate) return alert("Seleziona un mezzo.");
 
-    pdf.setFontSize(11);
-    pdf.text(`Modello: ${vehicle.modello || "-"}`, 20, y); y += 7;
-    pdf.text(`Flotta/Sito: ${vehicle.flotta || "-"}`, 20, y); y += 7;
-    pdf.text(`Stato mezzo: ${vehicle.stato || "-"}`, 20, y); y += 10;
+  const pdf = new jsPDF();
+  let y = 20;
 
-    damages.forEach((d, i) => {
-      const text = `${i + 1}. ${d.data || "-"} | ${d.zona} | ${d.tipo} | ${d.priorita} | ${d.stato} | Foto: ${(d.foto || []).length} | ${d.descrizione}`;
-      const lines = pdf.splitTextToSize(text, 170);
-      pdf.text(lines, 20, y);
-      y += lines.length * 6 + 5;
-      if (y > 275) {
-        pdf.addPage();
-        y = 20;
+  pdf.setFontSize(18);
+  pdf.text(`Scheda danni ${selectedPlate}`, 20, y);
+  y += 12;
+
+  pdf.setFontSize(11);
+  pdf.text(`Modello: ${vehicle.modello || "-"}`, 20, y); y += 7;
+  pdf.text(`Flotta/Sito: ${vehicle.flotta || "-"}`, 20, y); y += 7;
+  pdf.text(`Stato mezzo: ${vehicle.stato || "-"}`, 20, y); y += 12;
+
+  for (let i = 0; i < damages.length; i++) {
+    const d = damages[i];
+
+    const text =
+      `${i + 1}. ${d.data || "-"} | ${d.zona} | ${d.tipo} | ${d.priorita} | ${d.stato}\n` +
+      `Responsabile: ${d.responsabile || "-"} | Km: ${d.km || "-"} | Assegnato a: ${d.assegnatoA || "-"}\n` +
+      `Descrizione: ${d.descrizione || "-"}`;
+
+    const lines = pdf.splitTextToSize(text, 170);
+    pdf.text(lines, 20, y);
+    y += lines.length * 6 + 4;
+
+    const photos = d.foto || [];
+
+    for (let p = 0; p < photos.length; p++) {
+      try {
+        if (y > 220) {
+          pdf.addPage();
+          y = 20;
+        }
+
+        const imgData = await imageToBase64(photos[p].url);
+        pdf.addImage(imgData, "JPEG", 20, y, 55, 45);
+        y += 50;
+      } catch (err) {
+        pdf.text("Foto non caricabile nel PDF", 20, y);
+        y += 8;
       }
-    });
+    }
 
-    pdf.save(`scheda-${selectedPlate}.pdf`);
+    y += 8;
+
+    if (y > 260) {
+      pdf.addPage();
+      y = 20;
+    }
   }
 
+  pdf.save(`scheda-${selectedPlate}.pdf`);
+}
   const activeVehicles = vehicles.filter((v) => v.stato !== "Dismesso");
   const archivedVehicles = vehicles.filter((v) => v.stato === "Dismesso");
 
