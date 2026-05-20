@@ -244,3 +244,6 @@ th{text-transform:uppercase;font-size:11px;color:#64748b}
 .repair-btn {
   margin-right: 8px;
 }
+.repair-alert.full-width {
+  grid-column: 1 / -1;
+}

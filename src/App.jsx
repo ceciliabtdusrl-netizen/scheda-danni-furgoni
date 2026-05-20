@@ -555,15 +555,15 @@ const totalRepairCount = vehicles.reduce(
               <input value={vehicle.motivoDismissione || ""} onChange={(e) => setVehicleField("motivoDismissione", e.target.value)} placeholder="Restituito, venduto, fine noleggio..." />
             </label>
           </section>
-        )}
+       
 
         <div className="content">
-{repairDamages.length > 0 && (
+          {repairDamages.length > 0 && (
   <div className="repair-alert">
     ⚠️ Ci sono {repairDamages.length} danni da riparare
   </div>
 )}
-          <section className="van-area">
+<section className="van-area">
             <h3>Seleziona la zona del danno</h3>
 
             <div className="mockup-wrapper">
