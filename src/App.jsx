@@ -365,6 +365,10 @@ function App() {
     setBusy(false);
   }
 async function markAsRepaired(id) {
+  const ok = window.confirm("Confermi di voler segnare questo danno come riparato?");
+
+  if (!ok) return;
+
   await updateDoc(doc(db, "mezzi", selectedPlate, "danni", id), {
     stato: "Risolto",
     repairedAt: serverTimestamp(),
