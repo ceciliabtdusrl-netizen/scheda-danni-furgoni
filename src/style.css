@@ -1,0 +1,246 @@
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f6fb;color:#111827}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;border:0}
+.layout{display:grid;grid-template-columns:290px 1fr;min-height:100vh}
+.sidebar{background:white;border-right:1px solid #e5e7eb;padding:20px;display:flex;flex-direction:column;gap:14px}
+.sidebar h2{margin:0 0 4px;font-size:28px}
+.primary-btn,.save-btn,.save-damage{background:#0b1220;color:white;border-radius:12px;padding:13px 18px;font-weight:800}
+.search,input,select,textarea{width:100%;border:1px solid #d1d5db;border-radius:10px;padding:12px;background:white}
+.tabs{display:grid;grid-template-columns:1fr 1fr;border:1px solid #d1d5db;border-radius:10px;overflow:hidden}
+.tabs button{background:white;padding:11px;font-weight:800}
+.tabs button.active{background:#1d4ed8;color:white}
+.addrow{display:grid;grid-template-columns:1fr 44px;gap:8px}
+.addrow button{background:#111827;color:white;border-radius:10px;font-size:20px}
+.vehicle-list{display:flex;flex-direction:column;gap:10px;overflow:auto}
+.van-item{display:block;text-align:left;padding:14px;border-radius:10px;border:1px solid #e5e7eb;background:white;color:#111827}
+.van-item.active{background:#eaf1ff;border-color:#2563eb;color:#1d4ed8}
+.van-item span{display:block;color:#6b7280;font-size:12px;margin-top:4px}
+.pdf-btn{margin-top:auto;border:1px solid #93b4ff;color:#1d4ed8;background:white;border-radius:10px;padding:12px;font-weight:800}
+.main{padding:24px;overflow:auto}
+.topbar{display:flex;justify-content:space-between;align-items:center;background:white;border-radius:18px;padding:22px 26px;margin-bottom:20px;box-shadow:0 8px 24px rgba(15,23,42,.06)}
+.topbar h1{margin:0;font-size:30px}.topbar p{margin:6px 0 0;color:#6b7280}
+.vehicle-summary,.archive-box{display:grid;grid-template-columns:1fr 1.2fr 1.2fr 1fr;gap:14px;background:white;border-radius:16px;padding:16px;margin-bottom:18px;box-shadow:0 8px 24px rgba(15,23,42,.05)}
+.archive-box{grid-template-columns:1fr 2fr}
+.vehicle-summary label,.archive-box label,.damage-panel label{font-size:12px;font-weight:800;color:#344054}
+.vehicle-summary strong{display:block;font-size:24px;margin-top:8px}
+.content{display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:start}
+.van-area,.damage-panel,.damage-table{background:white;border-radius:18px;padding:20px;box-shadow:0 8px 24px rgba(15,23,42,.06)}
+.van-area h3{margin:0 0 14px;text-transform:uppercase;font-size:14px}
+.mockup-wrapper{position:relative;width:100%;max-width:1100px;margin:auto}
+.mockup{width:100%;display:block;border-radius:14px}
+.damage-panel{position:sticky;top:20px}
+.damage-panel h2{margin:0 0 8px}.hint{margin:0 0 18px;color:#64748b}
+.damage-panel label{display:block;margin-top:13px}
+.damage-panel label input,.damage-panel label select,.damage-panel label textarea{margin-top:6px}
+.damage-panel textarea{min-height:100px;resize:vertical}
+.save-damage{width:100%;margin-top:18px}
+.hotspot{position:absolute;background:transparent;border:1px solid transparent;border-radius:10px}
+.hotspot:hover,.hotspot.selected{background:rgba(37,99,235,.18);border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.20)}
+.tetto { top: 8%; left: 43%; width: 14%; height: 6%; }
+.parabrezza {
+  top: 14%;
+  left: 43%;
+  width: 14%;
+  height: 10%;
+}
+.specchio-sx { top: 17%; left: 57%; width: 4%; height: 8%; }
+.specchio-dx { top: 17%; left: 39%; width: 4%; height: 8%; }
+
+.porta-ant-sx { top: 17%; left: 8%; width: 9%; height: 18%; }
+.porta-ant-dx { top: 17%; left: 84%; width: 9%; height: 18%; }
+
+.porta-carico-laterale-dx { top: 20%; left: 70%; width: 12%; height: 19%; }
+.porta-carico-post { top: 46%; left: 41%; width: 18%; height: 17%; }
+
+.fiancata-sx { top: 14%; left: 16%; width: 19%; height: 23%; }
+.fiancata-dx { top: 14%; left: 65%; width: 19%; height: 23%; }
+
+.angolare-sx { top: 43%; left: 42%; width: 3%; height: 8%; }
+.angolare-dx { top: 43%; left: 56%; width: 3%; height: 8%; }
+
+.fanale-sx { top: 51%; left: 41%; width: 3%; height: 9%; }
+.fanale-dx { top: 51%; left: 56%; width: 3%; height: 9%; }
+
+.paraurti-ant { top: 32%; left: 43%; width: 15%; height: 5%; }
+.paraurti-post { top: 61%; left: 39%; width: 22%; height: 5%; }
+
+.sottoscocca { top: 75%; left: 18%; width: 26%; height: 13%; }
+.cerchi { top: 75%; left: 60%; width: 17%; height: 14%; }.photo-section{display:flex;align-items:flex-start;gap:14px;margin-top:18px}
+.photo-upload{display:flex;align-items:center;justify-content:center;width:130px;height:86px;border:1px dashed #93b4ff;border-radius:12px;color:#1d4ed8;font-weight:800;text-align:center;background:#f8fbff}
+.photo-upload input{display:none}
+.photo-grid{display:flex;flex-wrap:wrap;gap:12px}
+.photo-thumb{position:relative;width:120px;height:86px;border-radius:12px;overflow:hidden;background:#e5e7eb}
+.photo-thumb img{width:100%;height:100%;object-fit:cover}
+.photo-thumb button{position:absolute;right:5px;top:5px;background:#ef4444;color:white;border-radius:999px;width:22px;height:22px;line-height:20px;font-weight:900}
+.damage-table{margin-top:20px;overflow:auto}
+.damage-table h3{margin:0 0 12px}.damage-table h3 span{background:#ef4444;color:white;border-radius:999px;padding:3px 8px;font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;border-bottom:1px solid #edf1f7;padding:12px}
+th{text-transform:uppercase;font-size:11px;color:#64748b}
+.badge{padding:5px 10px;border-radius:999px;background:#eef4ff;font-weight:800}
+.badge.alta,.badge.urgente{background:#fee2e2;color:#b91c1c}
+.badge.media{background:#fef3c7;color:#92400e}
+.badge.bassa{background:#dcfce7;color:#166534}
+.danger{background:#fee2e2;color:#b91c1c;border-radius:8px;padding:7px 9px;font-weight:800}
+@media(max-width:1100px){.layout{grid-template-columns:1fr}.content,.vehicle-summary,.archive-box{grid-template-columns:1fr}.damage-panel{position:static}}
+
+/* Login Google e utente */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eef2f7;
+  padding: 24px;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 420px;
+  background: white;
+  border-radius: 20px;
+  padding: 38px;
+  text-align: center;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, .10);
+}
+
+.login-box h1 {
+  margin: 0 0 10px;
+  font-size: 28px;
+}
+
+.login-box p {
+  margin: 0 0 22px;
+  color: #64748b;
+}
+
+.login-error {
+  background: #fee2e2;
+  color: #991b1b;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+
+.google-btn {
+  width: 100%;
+  background: #0b1220;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-weight: 800;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-box {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  font-size: 13px;
+  color: #111827;
+}
+
+.user-box small {
+  color: #64748b;
+}
+
+.logout-btn {
+  background: #ef4444;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 13px;
+  font-weight: 800;
+}
+
+/* Anteprime foto nella tabella */
+.mini-photos {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.mini-photos img {
+  width: 46px;
+  height: 46px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+.repair-alert {
+  background: #ff4d4f;
+  color: white;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 12px rgba(255, 77, 79, 0.25);
+  animation: pulseAlert 1.8s infinite;
+}
+
+@keyframes pulseAlert {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.01);
+    opacity: 0.92;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.plate-btn.has-repair {
+  border: 2px solid #ff4d4f;
+  background: #fff1f0;
+}
+
+.repair-count {
+  background: #ff4d4f;
+  color: white;
+  border-radius: 999px;
+  min-width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: auto;
+  padding: 0 8px;
+}
+.resolved-title {
+  margin-top: 40px;
+  color: #1c7c36;
+}
+
+.resolved-table {
+  border: 2px solid #b7e4c7;
+}
+
+.resolved-table tr {
+  background: #f1fff4;
+}
+.global-repair-alert {
+  background: #ff4d4f;
+  color: white;
+  padding: 16px 20px;
+  border-radius: 14px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 18px rgba(255, 77, 79, 0.28);
+}
+.repair-btn {
+  margin-right: 8px;
+}
