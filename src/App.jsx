@@ -557,12 +557,13 @@ const totalRepairCount = vehicles.reduce(
           </section>
        
 
-        <div className="content">
-          {repairDamages.length > 0 && (
+        {repairDamages.length > 0 && (
   <div className="repair-alert">
     ⚠️ Ci sono {repairDamages.length} danni da riparare
   </div>
 )}
+
+<div className="content">
 <section className="van-area">
             <h3>Seleziona la zona del danno</h3>
 
