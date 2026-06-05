@@ -771,11 +771,6 @@ const totalRepairCount = vehicles.reduce(
 		<td>{d.responsabile || "-"}</td>
 		<td>{d.km || "-"}</td>
 		<td>{d.assegnatoA || "-"}</td>
-<td>
-  {d.repairedAt?.toDate
-    ? d.repairedAt.toDate().toLocaleDateString()
-    : "-"}
-</td>
 		<td>{d.dataPrevistaRiparazione || "-"}</td>
                    <td>
   <div className="mini-photos">
